@@ -81,8 +81,8 @@ namespace CSVTransformer.Tests.Unit
                 sheet.ToString(),
                 Is.EqualTo
                 (
-                    "Cell11,Cell12" + "\n" +
-                    "Cell21,Cell22"
+                    row1.ToString() + "\n" +
+                    row2.ToString()
                 )
             );
         }
