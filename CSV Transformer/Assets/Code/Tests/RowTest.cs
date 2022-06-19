@@ -10,7 +10,7 @@ using CSVTransformer.Codebase;
 public class RowTest
 {
     [Test]
-    public void ExtractColumns_OnlyKeepCellsThatAskedFor()
+    public void ExtractColumns_ShouldOnlyKeepCellsThatAskedFor()
     {
         var row = new Row
         (
@@ -31,13 +31,28 @@ public class RowTest
         );
         Assert.That
         (
-            new_row[0].ToString(),
-            Is.EqualTo("Cell1")
+            new_row.ToString(),
+            Is.EqualTo("Cell1,Cell3")
         );
+    }
+
+    [Test]
+    public void ToString_ShouldDisplayAllCellsInCSVFormat()
+    {
+        var row = new Row
+        (
+            new List<CellData>()
+            {
+                new StringCellData("Cell1"),
+                new StringCellData("Cell2"),
+                new StringCellData("Cell3")
+            }
+        );
+
         Assert.That
         (
-            new_row[1].ToString(),
-            Is.EqualTo("Cell3")
+            row.ToString(),
+            Is.EqualTo("Cell1,Cell2,Cell3")
         );
     }
 }

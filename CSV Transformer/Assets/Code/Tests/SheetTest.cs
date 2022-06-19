@@ -10,7 +10,7 @@ namespace CSVTransformer.Tests.Unit
     public class SheetTest
     {
         [Test]
-        public void ExtractColumns_KeepTheSameNumberOfRows()
+        public void ExtractColumns_ShouldKeepTheSameNumberOfRows()
         {
             var row1 = new Row
             (

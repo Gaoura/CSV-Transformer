@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System.Collections.Generic;
+using System.Text;
 
 namespace CSVTransformer.Codebase
 {
@@ -40,6 +41,25 @@ namespace CSVTransformer.Codebase
         internal void Add(CellData cell)
         {
             Cells.Add(cell);
+        }
+
+        public override string ToString()
+        {
+            var string_builder = new StringBuilder();
+            var cell_count = CellCount;
+
+            if (cell_count > 0)
+            {
+                string_builder.Append(Cells[0].ToString());
+            }
+
+            for (var i = 1; i < cell_count; ++i)
+            {
+                string_builder.Append(",");
+                string_builder.Append(Cells[i].ToString());
+            }
+
+            return string_builder.ToString();
         }
     }
 }
