@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace CSVTransformer.Codebase
 {
@@ -47,6 +48,25 @@ namespace CSVTransformer.Codebase
         internal void Add(Row row)
         {
             Rows.Add(row);
+        }
+
+        public override string ToString()
+        {
+            var string_builder = new StringBuilder();
+            var row_count = RowCount;
+
+            if (row_count > 0)
+            {
+                string_builder.Append(Rows[0].ToString());
+            }
+
+            for (var i = 1; i < row_count; ++i)
+            {
+                string_builder.Append("\n");
+                string_builder.Append(Rows[i].ToString());
+            }
+
+            return string_builder.ToString();
         }
     }
 }

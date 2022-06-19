@@ -48,5 +48,44 @@ namespace CSVTransformer.Tests.Unit
             );
         }
 
+        [Test]
+        public void ToString_ShouldDisplayEachRowOnItsOwnLine()
+        {
+            var row1 = new Row
+            (
+                new List<CellData>()
+                {
+                    new StringCellData("Cell11"),
+                    new StringCellData("Cell12")
+                }
+            );
+            var row2 = new Row
+            (
+                new List<CellData>()
+                {
+                    new StringCellData("Cell21"),
+                    new StringCellData("Cell22")
+                }
+            );
+            var sheet = new Sheet
+            (
+                new List<Row>()
+                {
+                    row1,
+                    row2
+                }
+            );
+
+            Assert.That
+            (
+                sheet.ToString(),
+                Is.EqualTo
+                (
+                    "Cell11,Cell12" + "\n" +
+                    "Cell21,Cell22"
+                )
+            );
+        }
+
     }
 }
