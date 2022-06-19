@@ -9,6 +9,9 @@ namespace CSVTransformer.Codebase
     {
         private List<Row> Rows { get; set; } = new();
 
+        public byte RowCount
+            => (byte)Rows.Count;
+
         public Row this[byte index]
             => Rows[index];
 

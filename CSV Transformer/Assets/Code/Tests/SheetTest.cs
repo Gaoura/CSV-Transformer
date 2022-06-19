@@ -10,24 +10,24 @@ namespace CSVTransformer.Tests.Unit
     public class SheetTest
     {
         [Test]
-        public void ExtractColumns()
+        public void ExtractColumns_KeepTheSameNumberOfRows()
         {
             var row1 = new Row
             (
                 new List<CellData>()
                 {
-                    new StringCellData("Column11"),
-                    new StringCellData("Column12"),
-                    new StringCellData("Column13")
+                    new StringCellData("Cell11"),
+                    new StringCellData("Cell12"),
+                    new StringCellData("Cell13")
                 }
             );
             var row2 = new Row
             (
                 new List<CellData>()
                 {
-                    new StringCellData("Column21"),
-                    new StringCellData("Column22"),
-                    new StringCellData("Column23")
+                    new StringCellData("Cell21"),
+                    new StringCellData("Cell22"),
+                    new StringCellData("Cell23")
                 }
             );
             var sheet = new Sheet
@@ -38,32 +38,13 @@ namespace CSVTransformer.Tests.Unit
                     row2 
                 }
             );
+
             var new_sheet = sheet.ExtractColumns(new HashSet<byte>() { 1, 3 });
 
             Assert.That
             (
-                new_sheet[0].CellCount,
+                new_sheet.RowCount,
                 Is.EqualTo(2)
-            );
-            Assert.That
-            (
-                new_sheet[0][0].ToString(),
-                Is.EqualTo("Column11")
-            );
-            Assert.That
-            (
-                new_sheet[0][1].ToString(),
-                Is.EqualTo("Column13")
-            );
-            Assert.That
-            (
-                new_sheet[1][0].ToString(),
-                Is.EqualTo("Column21")
-            );
-            Assert.That
-            (
-                new_sheet[1][1].ToString(),
-                Is.EqualTo("Column23")
             );
         }
 

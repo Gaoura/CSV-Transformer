@@ -1,6 +1,5 @@
 ﻿#nullable enable
 
-using System;
 using System.Collections.Generic;
 
 namespace CSVTransformer.Codebase
@@ -22,7 +21,7 @@ namespace CSVTransformer.Codebase
             Cells.AddRange(cells);
         }
 
-        internal Row ExtractColumns(HashSet<byte> columns_to_extract)
+        public Row ExtractColumns(HashSet<byte> columns_to_extract)
         {
             var new_row = new Row();
             var cell_count = CellCount;
