@@ -11,9 +11,6 @@ namespace CSVTransformer.Codebase
         public byte CellCount
             => (byte)Cells.Count;
 
-        public CellData this[byte index]
-            => Cells[index];
-
 
         internal Row() { }
 

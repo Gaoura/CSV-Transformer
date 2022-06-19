@@ -13,9 +13,6 @@ namespace CSVTransformer.Codebase
         public byte RowCount
             => (byte)Rows.Count;
 
-        public Row this[byte index]
-            => Rows[index];
-
         public Sheet() { }
 
         public Sheet ExtractColumns(HashSet<byte> columns_to_extract)
@@ -34,15 +31,6 @@ namespace CSVTransformer.Codebase
         public Sheet(List<Row> rows)
         {
             Rows.AddRange(rows);
-        }
-
-
-        internal void ForEach(Action<Row> action)
-        {
-            foreach (var row in Rows)
-            {
-                action(row);
-            }
         }
 
         internal void Add(Row row)
