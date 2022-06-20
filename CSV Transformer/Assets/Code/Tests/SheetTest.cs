@@ -87,5 +87,85 @@ namespace CSVTransformer.Tests.Unit
             );
         }
 
+
+        [Test]
+        public void SortByDate_ShouldKeepTheSameNumberOfRows()
+        {
+            var row1 = new Row
+            (
+                new List<CellData>()
+                {
+                    new StringCellData("2022-05-11"),
+                    new StringCellData("Cell12")
+                }
+            );
+            var row2 = new Row
+            (
+                new List<CellData>()
+                {
+                    new StringCellData("2022-05-09"),
+                    new StringCellData("Cell22")
+                }
+            );
+            var sheet = new Sheet
+            (
+                new List<Row>()
+                {
+                    row1,
+                    row2
+                }
+            );
+
+            var new_sheet = sheet.SortByDate(1);
+
+            Assert.That
+            (
+                new_sheet.RowCount,
+                Is.EqualTo(2)
+            );
+        }
+
+
+        [Test]
+        public void SortByDate_ShouldSortRowsByChronologicalOrderOnOneColumn()
+        {
+            var row1 = new Row
+            (
+                new List<CellData>()
+                {
+                    new StringCellData("2022-05-11"),
+                    new StringCellData("Cell12")
+                }
+            );
+            var row2 = new Row
+            (
+                new List<CellData>()
+                {
+                    new StringCellData("2022-05-09"),
+                    new StringCellData("Cell22")
+                }
+            );
+            var sheet = new Sheet
+            (
+                new List<Row>()
+                {
+                    row1,
+                    row2
+                }
+            );
+
+            var new_sheet = sheet.SortByDate(1);
+
+            Assert.That
+            (
+                new_sheet[0],
+                Is.EqualTo(row2)
+            );
+            Assert.That
+            (
+                new_sheet[1],
+                Is.EqualTo(row1)
+            );
+        }
     }
 }

@@ -1,8 +1,8 @@
 ﻿#nullable enable
 
-using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace CSVTransformer.Codebase
 {
@@ -12,6 +12,9 @@ namespace CSVTransformer.Codebase
 
         public byte RowCount
             => (byte)Rows.Count;
+
+        public Row this[byte index]
+            => Rows[index];
 
         public Sheet() { }
 
@@ -55,6 +58,13 @@ namespace CSVTransformer.Codebase
             }
 
             return string_builder.ToString();
+        }
+
+        public Sheet SortByDate(byte column_number)
+        {
+            var sorted_rows = new List<Row>(Rows);
+            sorted_rows.Sort( (x, y) => x.CompareTo(y, column_number) );
+            return new Sheet(sorted_rows);
         }
     }
 }
