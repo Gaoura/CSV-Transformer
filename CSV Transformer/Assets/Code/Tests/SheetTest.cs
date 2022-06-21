@@ -116,7 +116,7 @@ namespace CSVTransformer.Tests.Unit
                 }
             );
 
-            var new_sheet = sheet.SortByDate(1);
+            var new_sheet = sheet.Sort(new CellPosition(1));
 
             Assert.That
             (
@@ -154,16 +154,16 @@ namespace CSVTransformer.Tests.Unit
                 }
             );
 
-            var new_sheet = sheet.SortByDate(1);
+            var new_sheet = sheet.Sort(new CellPosition(1));
 
             Assert.That
             (
-                new_sheet[0],
+                new_sheet[new CellPosition(1)],
                 Is.EqualTo(row2)
             );
             Assert.That
             (
-                new_sheet[1],
+                new_sheet[new CellPosition(2)],
                 Is.EqualTo(row1)
             );
         }

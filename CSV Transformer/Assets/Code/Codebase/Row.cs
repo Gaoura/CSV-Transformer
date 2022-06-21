@@ -11,8 +11,8 @@ namespace CSVTransformer.Codebase
         public byte CellCount
             => (byte)Cells.Count;
 
-        private CellData this[byte column_number]
-            => Cells[column_number - 1];
+        private CellData this[CellPosition column_number]
+            => Cells[column_number.AsArrayIndex];
 
         internal Row() { }
 
@@ -37,7 +37,7 @@ namespace CSVTransformer.Codebase
             return new_row;
         }
 
-        public int CompareTo(Row other, byte column_number)
+        public int CompareTo(Row other, CellPosition column_number)
         {
             if (this[column_number] < other[column_number])
             {

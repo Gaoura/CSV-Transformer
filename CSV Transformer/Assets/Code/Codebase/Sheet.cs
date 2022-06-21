@@ -13,8 +13,8 @@ namespace CSVTransformer.Codebase
         public byte RowCount
             => (byte)Rows.Count;
 
-        public Row this[byte index]
-            => Rows[index];
+        public Row this[CellPosition row_number]
+            => Rows[row_number.AsArrayIndex];
 
         public Sheet() { }
 
@@ -60,7 +60,7 @@ namespace CSVTransformer.Codebase
             return string_builder.ToString();
         }
 
-        public Sheet SortByDate(byte column_number)
+        public Sheet Sort(CellPosition column_number)
         {
             var sorted_rows = new List<Row>(Rows);
             sorted_rows.Sort( (x, y) => x.CompareTo(y, column_number) );

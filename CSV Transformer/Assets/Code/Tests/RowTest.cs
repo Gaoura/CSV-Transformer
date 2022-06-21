@@ -79,17 +79,17 @@ namespace CSVTransformer.Tests.Unit
 
             Assert.That
             (
-                row1.CompareTo(row2, 1),
+                row1.CompareTo(row2, new CellPosition(1)),
                 Is.EqualTo(1)
             );
             Assert.That
             (
-                row1.CompareTo(row1, 1),
+                row1.CompareTo(row1, new CellPosition(1)),
                 Is.EqualTo(0)
             );
             Assert.That
             (
-                row2.CompareTo(row1, 1),
+                row2.CompareTo(row1, new CellPosition(1)),
                 Is.EqualTo(-1)
             );
         }
