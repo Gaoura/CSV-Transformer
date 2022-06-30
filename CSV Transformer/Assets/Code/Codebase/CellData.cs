@@ -10,8 +10,8 @@ namespace CSVTransformer.Codebase
         public static bool operator <(CellData cell1, CellData cell2)
             => cell1.IsLessThan(cell2);
 
-        protected abstract bool IsGreaterThan(CellData cell2);
+        protected abstract bool IsGreaterThan(CellData other);
 
-        protected abstract bool IsLessThan(CellData cell2);
+        protected abstract bool IsLessThan(CellData other);
 }
 }

@@ -18,9 +18,9 @@ namespace CSVTransformer.Codebase
             return Data;
         }
 
-        protected override bool IsGreaterThan(CellData cell)
+        protected override bool IsGreaterThan(CellData other)
         {
-            if (cell is StringCellData string_cell)
+            if (other is StringCellData string_cell)
             {
                 return Data.CompareTo(string_cell.Data) > 0;
             }
@@ -28,9 +28,9 @@ namespace CSVTransformer.Codebase
             throw new NotSupportedException();
         }
 
-        protected override bool IsLessThan(CellData cell)
+        protected override bool IsLessThan(CellData other)
         {
-            if (cell is StringCellData string_cell)
+            if (other is StringCellData string_cell)
             {
                 return Data.CompareTo(string_cell.Data) < 0;
             }
