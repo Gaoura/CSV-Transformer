@@ -98,12 +98,12 @@ namespace CSVTransformer.Tests.Unit
         {
             CellData cell1 = new StringCellData("2022-05-11");
             CellData cell2 = new NumberCellData(10.5);
-
+            
             Assert.That
             (
                 () => cell1 > cell2,
                 Throws.InstanceOf<NotSupportedException>()
-            ); ;
+            );
             Assert.That
             (
                 () => cell1 < cell2,
@@ -114,7 +114,7 @@ namespace CSVTransformer.Tests.Unit
             (
                 () => cell2 > cell1,
                 Throws.InstanceOf<NotSupportedException>()
-            ); ;
+            );
             Assert.That
             (
                 () => cell2 < cell1,
