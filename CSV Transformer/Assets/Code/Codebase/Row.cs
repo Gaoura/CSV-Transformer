@@ -6,14 +6,12 @@ using System.Text;
 
 namespace CSVTransformer.Codebase
 {
-    public sealed class Row : IEnumerator, IEnumerable
+    public sealed class Row : IEnumerable
     {
         public byte CellCount
             => (byte)Cells.Count;
 
         private List<CellData> Cells { get; set; } = new();
-
-        private int EnumerablePosition { get; set; } = -1;
 
         private CellData this[CellPosition column_number]
             => Cells[column_number.AsArrayIndex];
@@ -81,21 +79,9 @@ namespace CSVTransformer.Codebase
             return string_builder.ToString();
         }
 
-
-        public object Current => Cells[EnumerablePosition];
-
-        public bool MoveNext()
-        {
-            ++EnumerablePosition;
-            return EnumerablePosition < Cells.Count;
-        }
-
-        public void Reset()
-        {
-            EnumerablePosition = -1;
-        }
-
         public IEnumerator GetEnumerator()
-            => (IEnumerator)this;
+        {
+            return ((IEnumerable)Cells).GetEnumerator();
+        }
     }
 }
