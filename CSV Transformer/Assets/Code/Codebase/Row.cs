@@ -1,15 +1,19 @@
 ﻿#nullable enable
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CSVTransformer.Codebase
 {
-    public class Row
+    public sealed class Row : IEnumerator, IEnumerable
     {
-        private List<CellData> Cells { get; set; } = new();
         public byte CellCount
             => (byte)Cells.Count;
+
+        private List<CellData> Cells { get; set; } = new();
+
+        private int EnumerablePosition { get; set; } = -1;
 
         private CellData this[CellPosition column_number]
             => Cells[column_number.AsArrayIndex];
@@ -76,5 +80,22 @@ namespace CSVTransformer.Codebase
 
             return string_builder.ToString();
         }
+
+
+        public object Current => Cells[EnumerablePosition];
+
+        public bool MoveNext()
+        {
+            ++EnumerablePosition;
+            return EnumerablePosition < Cells.Count;
+        }
+
+        public void Reset()
+        {
+            EnumerablePosition = -1;
+        }
+
+        public IEnumerator GetEnumerator()
+            => (IEnumerator)this;
     }
 }

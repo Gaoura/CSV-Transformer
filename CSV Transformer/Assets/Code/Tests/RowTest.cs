@@ -8,7 +8,7 @@ using CSVTransformer.Codebase;
 
 namespace CSVTransformer.Tests.Unit
 {
-    public class RowTest
+    public sealed class RowTest
     {
         [Test]
         public void ExtractColumns_ShouldOnlyKeepCellsThatAskedFor()
@@ -17,9 +17,9 @@ namespace CSVTransformer.Tests.Unit
             (
                 new List<CellData>()
                 {
-                new StringCellData("Cell1"),
-                new StringCellData("Cell2"),
-                new StringCellData("Cell3")
+                    new StringCellData("Cell1"),
+                    new StringCellData("Cell2"),
+                    new StringCellData("Cell3")
                 }
             );
 
@@ -44,9 +44,9 @@ namespace CSVTransformer.Tests.Unit
             (
                 new List<CellData>()
                 {
-                new StringCellData("Cell1"),
-                new StringCellData("Cell2"),
-                new StringCellData("Cell3")
+                    new StringCellData("Cell1"),
+                    new StringCellData("Cell2"),
+                    new StringCellData("Cell3")
                 }
             );
 

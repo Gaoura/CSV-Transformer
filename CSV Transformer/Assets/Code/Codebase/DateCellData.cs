@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace CSVTransformer.Codebase
 {
-    public class DateCellData : CellData
+    public sealed class DateCellData : CellData
     {
         private static Regex DatePattern { get; set; }
 
@@ -21,11 +21,11 @@ namespace CSVTransformer.Codebase
         static DateCellData()
         {
             // language=regex
-            string year_month_day_date_pattern = @"\d{4}-\d{2}-\d{2}";
+            var year_month_day_date_pattern = @"\d{4}-\d{2}-\d{2}";
             // language=regex
-            string time_zone_pattern = @"[+-]\d{2}:\d{2}";
+            var time_zone_pattern = @"[+-]\d{2}:\d{2}";
             // language=regex
-            string time_pattern = @"\d{2}:\d{2}:\d{2}";
+            var time_pattern = @"\d{2}:\d{2}:\d{2}";
             // language=regex
             DatePattern = new
             (
