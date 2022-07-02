@@ -24,7 +24,7 @@ namespace CSVTransformer.Tests.Unit
         }
 
         [Test]
-        public void Build_ShouldReturnNumberCellData_WhenDataIsNumber()
+        public void Build_ShouldReturnNumberCellData_WhenFieldIsNumber()
         {
             var factory = new CellDataFactory();
             var cell = factory.Build("20.5");
@@ -33,6 +33,26 @@ namespace CSVTransformer.Tests.Unit
             (
                 cell,
                 Is.InstanceOf<NumberCellData>()
+            );
+        }
+
+        [Test]
+        public void Build_ShouldReturnDateCellData_WhenFieldIsDate()
+        {
+            var factory = new CellDataFactory();
+            var cell1 = factory.Build("2022-05-11T01:00:00+00:00");
+            var cell2 = factory.Build("2022-05-11");
+
+            Assert.That
+            (
+                cell1,
+                Is.InstanceOf<DateCellData>()
+            );
+
+            Assert.That
+            (
+                cell2,
+                Is.InstanceOf<DateCellData>()
             );
         }
     }

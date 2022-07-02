@@ -95,12 +95,11 @@ namespace CSVTransformer.Tests.Unit
         }
 
         [Test]
-        public void CompareTo_ShouldSuccessfullyCompareCells_WhenCellsAreDates()
+        public void CompareTo_ShouldSuccessfullyCompareCells_WhenCellsAreDatesAndDataIsOnlyDate()
         {
             CellData cell1 = DateCellData.Build("2022-05-12") ?? throw new NullReferenceException();
-            CellData cell2 = DateCellData.Build("2022-05-11T01:00:00+00:00") ?? throw new NullReferenceException();
-            CellData cell3 = DateCellData.Build("2022-05-11T01:00:00+00:00") ?? throw new NullReferenceException();
-            CellData cell4 = DateCellData.Build("2022-05-11T02:00:00+00:00") ?? throw new NullReferenceException();
+            CellData cell2 = DateCellData.Build("2022-05-11") ?? throw new NullReferenceException();
+            CellData cell3 = DateCellData.Build("2022-05-11") ?? throw new NullReferenceException();
 
             Assert.That
             (
@@ -135,28 +134,47 @@ namespace CSVTransformer.Tests.Unit
                 cell2 > cell3,
                 Is.False
             );
+        }
 
+        [Test]
+        public void CompareTo_ShouldSuccessfullyCompareCells_WhenCellsAreDatesAndDataIsDateAndTime()
+        {
+            CellData cell1 = DateCellData.Build("2022-05-11T02:00:00+00:00") ?? throw new NullReferenceException();
+            CellData cell2 = DateCellData.Build("2022-05-11T01:00:00+00:00") ?? throw new NullReferenceException();
+            CellData cell3 = DateCellData.Build("2022-05-11T01:00:00+00:00") ?? throw new NullReferenceException();
 
             Assert.That
             (
-                cell4 > cell2,
+                cell1 > cell2,
                 Is.True
             );
             Assert.That
             (
-                cell4 < cell2,
+                cell1 < cell2,
                 Is.False
             );
 
             Assert.That
             (
-                cell2 > cell4,
+                cell2 > cell1,
                 Is.False
             );
             Assert.That
             (
-                cell2 < cell4,
+                cell2 < cell1,
                 Is.True
+            );
+
+            Assert.That
+            (
+                cell2 < cell3,
+                Is.False
+            );
+
+            Assert.That
+            (
+                cell2 > cell3,
+                Is.False
             );
         }
 

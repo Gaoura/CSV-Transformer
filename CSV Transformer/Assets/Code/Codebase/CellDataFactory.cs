@@ -13,7 +13,6 @@ namespace CSVTransformer.Codebase
             {
                 cell = DateCellData.Build(field);
             }
-
             return cell ?? new StringCellData(field);
         }
     }
