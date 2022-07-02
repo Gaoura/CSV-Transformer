@@ -1,24 +1,20 @@
 ﻿#nullable enable
 
-using System;
-using System.Globalization;
-
 namespace CSVTransformer.Codebase
 {
     public class CellDataFactory
     {
-        public CellData Build(string data)
+        public CellData Build(string field)
         {
-            var inspector = new FieldInspector();
-            var type = inspector.GetTypeOf(data); 
 
-            CellData cell = type switch
+            CellData? cell = NumberCellData.Build(field);
+
+            if (cell is null)
             {
-                FieldType.Number => new NumberCellData(Convert.ToDouble(data, CultureInfo.InvariantCulture.NumberFormat)),
-                _ => new StringCellData(data),
-            };
+                cell = DateCellData.Build(field);
+            }
 
-            return cell;
+            return cell ?? new StringCellData(field);
         }
     }
 }

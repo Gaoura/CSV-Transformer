@@ -1,6 +1,8 @@
 ﻿#nullable enable
 
 using System;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace CSVTransformer.Codebase
 {
@@ -8,9 +10,26 @@ namespace CSVTransformer.Codebase
     {
         private double Data { get; set; }
 
-        public NumberCellData(double data)
+        private NumberCellData(double data)
         {
             Data = data;
+        }
+
+        public static CellData? Build(string field)
+        {
+            if (IsNumberRecognized(field))
+            {
+                return new NumberCellData(Convert.ToDouble(field, CultureInfo.InvariantCulture.NumberFormat));
+            }
+
+            return null;
+
+
+            static bool IsNumberRecognized(string field)
+            {
+                Regex number_pattern = new(@"^\d+(\.\d+)?$");
+                return number_pattern.IsMatch(field);
+            }
         }
 
         protected override bool IsGreaterThan(CellData other)
