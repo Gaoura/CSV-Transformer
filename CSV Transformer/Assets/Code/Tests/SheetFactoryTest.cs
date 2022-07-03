@@ -1,6 +1,5 @@
 ﻿#nullable enable
 
-using System;
 using System.Collections.Generic;
 
 using NUnit.Framework;
@@ -22,6 +21,7 @@ namespace CSVTransformer.Tests.Unit
                 "field20,field21",
                 "field30,field31"
             };
+
             var sheet = factory.Build(csv_lines);
 
             Assert.That
