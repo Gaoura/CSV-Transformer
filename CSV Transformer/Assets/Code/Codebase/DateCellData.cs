@@ -43,9 +43,9 @@ namespace CSVTransformer.Codebase
         {
             if (IsDateRecognized(field))
             {
-                var groups = DatePattern.Match(field).Groups;
-                var date = groups[0].Captures[0].Value;
-                var time = groups[1].Captures[0].Value;
+                var parts = field.Split("T");
+                var date = parts[0];
+                var time = parts.Length > 1 ? parts[1] : "";
                 return new DateCellData(date, time);
             }
 
@@ -90,6 +90,30 @@ namespace CSVTransformer.Codebase
             throw new NotSupportedException();
         }
 
+        protected override CellData SumWith(CellData other)
+        {
+            if (other is DateCellData)
+            {
+                return new DateCellData(Date, "");
+            }
 
+            throw new NotSupportedException();
+        }
+
+        internal bool HasSameDateAs(DateCellData other)
+        {
+            return Date == other.Date;
+        }
+
+        internal DateCellData GetCopyWithDateOnly()
+        {
+            return new DateCellData(Date, "");
+        }
+
+        public override string ToString()
+        {
+            var time = (Time.Length > 0) ? $"T{Time}" : "";
+            return Date + time;
+        }
     }
 }

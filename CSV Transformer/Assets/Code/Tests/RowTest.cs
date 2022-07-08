@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using System.Collections.Generic;
 
 using NUnit.Framework;
@@ -93,5 +94,28 @@ namespace CSVTransformer.Tests.Unit
                 Is.EqualTo(-1)
             );
         }
+        /*
+        [Test]
+        public void ReplaceCell_ShouldReturnCopyOfRowWithOnlyOneChangedCell()
+        {
+            var row = new Row
+            (
+                new List<CellData>()
+                {
+                    new StringCellData("2022-05-11"),
+                    new StringCellData("Cell2")
+                }
+            );
+            var cell = NumberCellData.Build("25") ?? throw new NullReferenceException();
+
+            var new_row = row.ReplaceCell(new CellPosition(1), cell);
+            var expected_row = "25,Cell2";
+
+            Assert.That
+            (
+                new_row.ToString(),
+                Is.EqualTo(expected_row)
+            );
+        }*/
     }
 }

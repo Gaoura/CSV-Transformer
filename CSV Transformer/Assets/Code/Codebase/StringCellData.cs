@@ -37,5 +37,15 @@ namespace CSVTransformer.Codebase
 
             throw new NotSupportedException();
         }
+
+        protected override CellData SumWith(CellData other)
+        {
+            if (other is StringCellData string_cell)
+            {
+                return new StringCellData(Data + string_cell.Data);
+            }
+
+            throw new NotSupportedException();
+        }
     }
 }

@@ -51,5 +51,20 @@ namespace CSVTransformer.Codebase
 
             throw new NotSupportedException();
         }
+
+        protected override CellData SumWith(CellData other)
+        {
+            if (other is NumberCellData number_cell)
+            {
+                return new NumberCellData(Data + number_cell.Data);
+            }
+
+            throw new NotSupportedException();
+        }
+
+        public override string ToString()
+        {
+            return Data.ToString().Replace(',', '.');
+        }
     }
 }

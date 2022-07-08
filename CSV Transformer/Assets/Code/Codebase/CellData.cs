@@ -13,5 +13,10 @@ namespace CSVTransformer.Codebase
         protected abstract bool IsGreaterThan(CellData other);
 
         protected abstract bool IsLessThan(CellData other);
-}
+
+        public static CellData operator +(CellData cell1, CellData cell2)
+            => cell1.SumWith(cell2);
+
+        protected abstract CellData SumWith(CellData other);
+    }
 }
