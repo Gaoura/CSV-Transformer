@@ -200,7 +200,7 @@ namespace CSVTransformer.Codebase
             
             public DateCellColumnPosition this[int i] => Positions[i];
 
-            protected DateCellColumnPositionCollection(List<DateCellColumnPosition> positions)
+            private protected DateCellColumnPositionCollection(List<DateCellColumnPosition> positions)
             {
                 Positions = positions;
             }
@@ -216,7 +216,7 @@ namespace CSVTransformer.Codebase
         {
             public CellPosition Position { get; private set; }
 
-            protected DateCellColumnPosition(CellPosition position) 
+            private protected DateCellColumnPosition(CellPosition position) 
             {
                 Position = position;
             }
